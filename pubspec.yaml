@@ -1,0 +1,71 @@
+name: arabcanadanews
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  flutter_swiper: ^1.1.6
+  cuberto_bottom_bar: ^1.1.0
+  font_awesome_flutter: ^8.7.0
+  flutter_sfsymbols: ^1.0.0
+  page_transition:
+  http:
+  json_annotation: ^2.4.0
+  paging: ^0.1.0
+  flutter_html: ^0.11.1
+  loadmore: ^1.0.4
+  video_player: ^0.10.8+1
+  chewie: ^0.9.7
+  url_launcher: ^5.4.2
+  simple_animations:
+  flutter_widget_from_html: ^0.3.2+1
+  webview_flutter: ^0.3.19+9
+  share: ^0.6.3+6
+  flutter_svg: ^0.17.4
+  bot_toast: ^2.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^1.0.0
+  json_serializable: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: jfflatreg
+      fonts:
+        - asset: assets/fonts/jfflatreg.ttf
+
+    - family: sst-roman
+      fonts:
+        - asset: assets/fonts/sst-roman.ttf
+
+    - family: sficonsets
+      fonts:
+        - asset: packages/flutter_sfsymbols/fonts/sficonsets.ttf
+
+    - family: sst-arabic-bold
+      fonts:
+        - asset: assets/fonts/DINNextLTW23-Bold.ttf
+
+    - family: SST-Arabic-Light
+      fonts:
+        - asset: assets/fonts/DINNextLTW23-Regular.ttf
+
+    - family: SST-Arabic-Medium
+      fonts:
+        - asset: assets/fonts/DINNextLTW23-Medium.ttf
