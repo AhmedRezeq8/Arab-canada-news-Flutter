@@ -73,18 +73,16 @@ class _CategorieView1State extends State<CategorieView1> {
               print('this is ads');
               data.add(Posts(
                 postType: item['post_type'],
-                adsimage:
-                    'https://arabcanadanews.ca/image/640/432/' + item['image'],
+                adsimage: 'https://arabcanadanews.ca/' + item['image'],
                 link: item['link'],
               ));
             } else {
               print('this is post');
               data.add(Posts(
                 postType: item['post_type'],
-                imageUrl:
-                    'https://arabcanadanews.ca/image/640/432/' + item['image'],
+                imageUrl: 'https://arabcanadanews.ca/' + item['image'],
                 id: item['id'],
-                time: item['created_at'],
+                time: item['time'],
                 title: item['title'],
               ));
             }

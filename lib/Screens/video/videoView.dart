@@ -23,9 +23,8 @@ class _VideoViewState extends State<VideoView> {
   ScrollController _scrollController = ScrollController();
   List<Posts> data = [];
   bool isLoading = false;
-  int currentPage = 1;
+  int currentPage = 0;
   ScrollPhysics physics;
-  int lastPage = 1;
 
   bool hasData;
   @override
@@ -67,32 +66,37 @@ class _VideoViewState extends State<VideoView> {
     });
   }
 
+  RegExp regExp = new RegExp(
+    r'.*(?:(?:youtu\.be\/|youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*',
+    caseSensitive: false,
+    multiLine: false,
+  );
   fetch() {
     ApiService()
       ..getVideos(currentPage).then((value) {
-        if (value['data']['last_page'] == currentPage) {
-          print('no data ' + value['data']['last_page']);
+        if ((currentPage) > value['data']['last_page']) {
+          // no  more data
           setState(() {
-            hasData = false;
             isLoading = false;
           });
         } else {
           setState(() {
-            hasData = true;
+            isLoading = true;
           });
+
           for (var item in value['data']['data']) {
             if (this.mounted) {
               setState(() {
                 data.add(Posts(
-                  id: item['id'],
-                  title: item['title'],
-                  // description: item['description'],
-                  path: item['youtube_url'],
-                  time: item['created_at'],
-                  imageUrl: 'https://arabcanadanews.ca/image/640/432/' +
-                      item['image'],
-                  // type: item['type'],
-                ));
+                    id: item['id'],
+                    title: item['title'],
+                    path: item['path'],
+                    // time: item['time'],
+                    imageUrl: 'https://img.youtube.com/vi/' +
+                        regExp.firstMatch(item['path']).group(1) +
+                        '/default.jpg',
+                    type: item['type'],
+                    description: item['description']));
                 isLoading = false;
                 HapticFeedback.mediumImpact();
               });
@@ -146,7 +150,7 @@ class Posts {
   String description;
   String path;
   String type;
-  String time;
+  // String time;
 
   Posts(
       {this.id,
@@ -154,7 +158,7 @@ class Posts {
       this.title,
       this.description,
       this.path,
-      this.time,
+      // this.time,
       this.type});
 }
 // end posts model map
@@ -376,7 +380,7 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                                 type: PageTransitionType.downToUp,
                                 child: VideoPlay(
                                     title: widget.data[index].title,
-                                    description: widget.data[index].description,
+                                    // description: widget.data[index].description,
                                     path: widget.data[index].path,
                                     type: widget.data[index].type),
                               ),

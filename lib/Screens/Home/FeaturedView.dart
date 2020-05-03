@@ -90,7 +90,9 @@ class _FeaturedViewState extends State<FeaturedView> {
                               padding:
                                   const EdgeInsets.only(top: 8.0, right: 20),
                               child: Text(
-                                content['data']['featured'][0]['created_at'],
+                                content['data']['featured'][0]['time'] == null
+                                    ? 'غير متوفر'
+                                    : content['data']['featured'][0]['time'],
                                 style: TextStyle(
                                     fontFamily: "SST-Arabic-Medium",
                                     fontSize: 12,
@@ -203,7 +205,11 @@ class _FeaturedViewState extends State<FeaturedView> {
                                             top: 8.0, right: 10),
                                         child: Text(
                                           content['data']['featured'][index + 1]
-                                              ['created_at'],
+                                                      ['time'] ==
+                                                  null
+                                              ? 'غير متوفر'
+                                              : content['data']['featured']
+                                                  [index + 1]['time'],
                                           style: TextStyle(
                                               fontFamily: "SST-Arabic-Medium",
                                               fontSize: 12,

@@ -106,7 +106,7 @@ class _HomeState extends State<Home> {
                 imageUrl: ApiService().getImage(item['image']),
                 id: item['id'],
                 // time: 'غير متوفر',
-                time: item['created_at'] == null ? '00:00' : item['created_at'],
+                time: item['time'] == null ? 'غير متوفر' : item['time'],
                 // categoryTitle:'غير متوفر',
                 categoryTitle: item['category']['title'] == null
                     ? 'غير متوفر'

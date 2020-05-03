@@ -2,8 +2,10 @@ import 'package:arabcanadanews/Screens/video/videoView.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'Home/Home.dart';
+import 'breaknews/breaknews.dart';
 import 'categories/CategorieView1.dart';
 import 'categories/CategorieView2.dart';
 import 'more.dart';
@@ -23,7 +25,7 @@ class _MyTabBarState extends State<MyTabBar> {
 
   final tabs = [
     Home(),
-    CategorieView1(title: 'عاجل', catId: 2),
+    BreakNews(),
     // BreakNews(),
     CategorieView2(title: 'غرائب وعجائب', catId: 2),
     // AlrayView(),
@@ -35,7 +37,7 @@ class _MyTabBarState extends State<MyTabBar> {
   @override
   void initState() {
     pageList.add(Home());
-    pageList.add(CategorieView1(title: 'عاجل', catId: 2));
+    pageList.add(BreakNews());
     pageList.add(CategorieView2(title: 'غرائب وعجائب', catId: 2));
     pageList.add(VideoView());
     pageList.add(More());
@@ -74,7 +76,14 @@ class _MyTabBarState extends State<MyTabBar> {
                 ),
                 backgroundColor: Colors.blue),
             BottomNavigationBarItem(
-                icon: Icon(SFSymbols.money_dollar_circle),
+                // icon: Icon(SFSymbols.money_dollar_circle),
+                icon: SvgPicture.asset(
+                  'assets/images/file.svg',
+                  width: 20.0,
+                  height: 20.0,
+                  color: null,
+                  allowDrawingOutsideViewBox: true,
+                ),
                 title: Text(
                   "غرائب وعجائب",
                   style: TextStyle(

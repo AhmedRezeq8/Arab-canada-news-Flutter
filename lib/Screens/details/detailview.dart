@@ -32,6 +32,7 @@ class _DetailViewState extends State<DetailView> {
   @override
   void initState() {
     super.initState();
+    print(widget.id);
     _apiService = ApiService();
   }
 
@@ -50,8 +51,9 @@ class _DetailViewState extends State<DetailView> {
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
                   Map content = snapshot.data;
-                  String imgurl =
-                      ApiService().getImage(content['data']['img'].toString());
+                  print(content['data']);
+                  String imageurl = ApiService()
+                      .getImage(content['data']['image'].toString());
                   return Stack(
                     children: <Widget>[
                       Positioned(
@@ -65,7 +67,7 @@ class _DetailViewState extends State<DetailView> {
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(imgurl)),
+                                  image: NetworkImage(imageurl)),
                             ),
                             child: Container(
                                 decoration: BoxDecoration(
@@ -95,7 +97,7 @@ class _DetailViewState extends State<DetailView> {
                                 InkWell(
                                   onTap: () {
                                     Share.share(
-                                        'https://arabcanadanews.ca/post/' +
+                                        'https://arabcanadanews.ca/api/v1/post/' +
                                             widget.id.toString() +
                                             ' - ' +
                                             content['data']['title'],
@@ -168,32 +170,32 @@ class _DetailViewState extends State<DetailView> {
                                 children: <Widget>[
                                   SizedBox(height: 20),
                                   // first ads here :)
-                                  FadeAnimation(
-                                    0.6,
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        GestureDetector(
-                                            onTap: () {
-                                              HapticFeedback.mediumImpact();
+                                  // FadeAnimation(
+                                  //   0.6,
+                                  //   Column(
+                                  //     mainAxisAlignment:
+                                  //         MainAxisAlignment.start,
+                                  //     crossAxisAlignment:
+                                  //         CrossAxisAlignment.start,
+                                  //     children: <Widget>[
+                                  //       GestureDetector(
+                                  //           onTap: () {
+                                  //             HapticFeedback.mediumImpact();
 
-                                              _openAds(content['ads1']['link']);
-                                            },
-                                            child: Container(
-                                              child: Image.network(
-                                                _apiService.getImage(
-                                                    content['ads1']['img']
-                                                        .toString()),
-                                                fit: BoxFit.fill,
-                                              ),
-                                            )),
-                                        SizedBox(height: 10),
-                                      ],
-                                    ),
-                                  ),
+                                  //             _openAds(content['ads1']['link']);
+                                  //           },
+                                  //           child: Container(
+                                  //             child: Image.network(
+                                  //               _apiService.getImage(
+                                  //                   content['ads1']['image']
+                                  //                       .toString()),
+                                  //               fit: BoxFit.fill,
+                                  //             ),
+                                  //           )),
+                                  //       SizedBox(height: 10),
+                                  //     ],
+                                  //   ),
+                                  // ),
                                   SizedBox(height: 10),
 
                                   FadeAnimation(
@@ -211,7 +213,9 @@ class _DetailViewState extends State<DetailView> {
                                   FadeAnimation(
                                     0.5,
                                     Text(
-                                      content['data']['time'],
+                                      content['data']['time'] == null
+                                          ? "غير محدد"
+                                          : content['data']['time'],
                                       style: TextStyle(
                                           fontFamily: "sst-roman",
                                           fontSize: 10,
@@ -238,32 +242,32 @@ class _DetailViewState extends State<DetailView> {
                                               TextAlign.right),
                                     ),
                                   ),
-                                  FadeAnimation(
-                                    0.6,
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        GestureDetector(
-                                            onTap: () {
-                                              HapticFeedback.mediumImpact();
+                                  // FadeAnimation(
+                                  //   0.6,
+                                  //   Column(
+                                  //     mainAxisAlignment:
+                                  //         MainAxisAlignment.start,
+                                  //     crossAxisAlignment:
+                                  //         CrossAxisAlignment.start,
+                                  //     children: <Widget>[
+                                  //       GestureDetector(
+                                  //           onTap: () {
+                                  //             HapticFeedback.mediumImpact();
 
-                                              _openAds(content['ads2']['link']);
-                                            },
-                                            child: Container(
-                                              child: Image.network(
-                                                _apiService.getImage(
-                                                    content['ads2']['img']
-                                                        .toString()),
-                                                fit: BoxFit.fill,
-                                              ),
-                                            )),
-                                        SizedBox(height: 10),
-                                      ],
-                                    ),
-                                  ),
+                                  //             _openAds(content['ads2']['link']);
+                                  //           },
+                                  //           child: Container(
+                                  //             child: Image.network(
+                                  //               _apiService.getImage(
+                                  //                   content['ads2']['image']
+                                  //                       .toString()),
+                                  //               fit: BoxFit.fill,
+                                  //             ),
+                                  //           )),
+                                  //       SizedBox(height: 10),
+                                  //     ],
+                                  //   ),
+                                  // ),
                                   Footer(),
                                 ],
                               ),
@@ -307,7 +311,7 @@ class Footer extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Text(
-              "جميع الحقوق محفوظة لـ الرؤية ©2020",
+              "جميع الحقوق محفوظة لـ عرب كندا نيوز ©2020",
               style: TextStyle(
                   fontFamily: "sst-arabic-bold",
                   fontSize: 10,

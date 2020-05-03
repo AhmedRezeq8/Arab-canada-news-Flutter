@@ -1,4 +1,4 @@
-package com.example.arabcanadanews
+package com.atyaf.arabcanadanews
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

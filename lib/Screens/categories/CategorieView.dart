@@ -68,45 +68,44 @@ class _CategorieViewState extends State<CategorieView> {
 
   fetch() {
     ApiService().getPosts(widget.catId, currentPage).then((value) {
-      if (value['data']['posts']['last_page'] == currentPage) {
-        print('no data ');
-        setState(() {
-          hasData = false;
-          isLoading = false;
-        });
-      } else {
-        setState(() {
-          hasData = true;
-        });
+      // if (value['data']['posts']['last_page'] == currentPage) {
+      //   print('no data ');
+      //   setState(() {
+      //     hasData = false;
+      //     isLoading = false;
+      //   });
+      // } else {
+      //   setState(() {
+      //     hasData = true;
+      //   });
 
-        for (var item in value['data']['posts']['data']) {
-          if (this.mounted) {
-            setState(() {
-              if (item['post_type'] == 'ads') {
-                print('this is ads');
-                data.add(Posts(
-                  post_type: item['post_type'],
-                  adsimage: 'https://arabcanadanews.ca/' + item['image'],
-                  link: item['link'],
-                ));
-              } else {
-                print('this is post');
-                data.add(Posts(
-                  post_type: item['post_type'],
-                  imageUrl: 'https://arabcanadanews.ca/image/640/432/' +
-                      item['image'],
-                  id: item['id'],
-                  time: item['created_at'],
-                  title: item['title'],
-                ));
-              }
+      for (var item in value['data']['posts']['data']) {
+        if (this.mounted) {
+          setState(() {
+            if (item['post_type'] == 'ads') {
+              print('this is ads');
+              data.add(Posts(
+                post_type: item['post_type'],
+                adsimage: 'https://arabcanadanews.ca/' + item['image'],
+                link: item['link'],
+              ));
+            } else {
+              print('this is post');
+              data.add(Posts(
+                post_type: item['post_type'],
+                imageUrl: 'https://arabcanadanews.ca/' + item['image'],
+                id: item['id'],
+                time: item['time'],
+                title: item['title'],
+              ));
+            }
 
-              isLoading = false;
-              HapticFeedback.mediumImpact();
-            });
-          }
+            isLoading = false;
+            HapticFeedback.mediumImpact();
+          });
         }
       }
+      // }
     });
   }
 
@@ -314,115 +313,114 @@ class _PostsListBuilderState extends State<PostsListBuilder> {
                         ],
                       )),
                 );
-              } else if (widget.data[index].post_type == 'post') {
-                return FadeAnimation(
-                  0.6,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: g.dark.withOpacity(0.2),
-                              blurRadius: 1.0,
-                              spreadRadius: 0.1,
-                              offset: Offset(
-                                0.0,
-                                0.2,
+              }
+              return FadeAnimation(
+                0.6,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: g.dark.withOpacity(0.2),
+                            blurRadius: 1.0,
+                            spreadRadius: 0.1,
+                            offset: Offset(
+                              0.0,
+                              0.2,
+                            ),
+                          )
+                        ],
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          HapticFeedback.mediumImpact();
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.downToUp,
+                                  child: DetailView(widget.data[index].id)));
+                        },
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              FadeInImage.assetNetwork(
+                                width: 160,
+                                height: 105,
+                                fit: BoxFit.cover,
+                                placeholder: 'assets/images/loader.gif',
+                                image: widget.data[index].imageUrl,
                               ),
-                            )
-                          ],
-                        ),
-                        child: GestureDetector(
-                          onTap: () {
-                            HapticFeedback.mediumImpact();
-                            Navigator.push(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.downToUp,
-                                    child: DetailView(widget.data[index].id)));
-                          },
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                FadeInImage.assetNetwork(
-                                  width: 160,
-                                  height: 105,
-                                  fit: BoxFit.cover,
-                                  placeholder: 'assets/images/loader.gif',
-                                  image: widget.data[index].imageUrl,
-                                ),
-                                Spacer(),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Container(
-                                        padding:
-                                            EdgeInsets.only(right: 10, left: 0),
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                200,
-                                        child: Text(
-                                          widget.data[index].title,
-                                          style: TextStyle(
-                                              fontFamily: "SST-Arabic-Medium",
-                                              fontSize: 16,
-                                              height: 1.5),
-                                          textAlign: TextAlign.right,
-                                          maxLines: 3,
-                                        )),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, right: 10),
+                              Spacer(),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Container(
+                                      padding:
+                                          EdgeInsets.only(right: 10, left: 0),
+                                      width: MediaQuery.of(context).size.width -
+                                          200,
                                       child: Text(
-                                        widget.data[index].time,
+                                        widget.data[index].title,
                                         style: TextStyle(
                                             fontFamily: "SST-Arabic-Medium",
-                                            fontSize: 12,
-                                            color: Colors.grey.shade600),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ]),
-                        ),
+                                            fontSize: 16,
+                                            height: 1.5),
+                                        textAlign: TextAlign.right,
+                                        maxLines: 3,
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 8.0, right: 10),
+                                    child: Text(
+                                      widget.data[index].time,
+                                      style: TextStyle(
+                                          fontFamily: "SST-Arabic-Medium",
+                                          fontSize: 12,
+                                          color: Colors.grey.shade600),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ]),
                       ),
-                      SizedBox(height: 10),
-                    ],
-                  ),
-                );
-              } else if ((widget.data[index].post_type == 'ads')) {
-                return FadeAnimation(
-                  0.6,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      GestureDetector(
-                          onTap: () {
-                            HapticFeedback.mediumImpact();
-
-                            _openAds(widget.data[index].link);
-                          },
-                          child: Container(
-                            child: Image.network(
-                              widget.data[index].adsimage,
-                              fit: BoxFit.fill,
-                            ),
-                          )),
-                      SizedBox(height: 10),
-                    ],
-                  ),
-                );
-              }
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                ),
+              );
             }
+            //  else if ((widget.data[index].post_type == 'ads')) {
+            //   return FadeAnimation(
+            //     0.6,
+            //     Column(
+            //       mainAxisAlignment: MainAxisAlignment.start,
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: <Widget>[
+            //         GestureDetector(
+            //             onTap: () {
+            //               HapticFeedback.mediumImpact();
+
+            //               _openAds(widget.data[index].link);
+            //             },
+            //             child: Container(
+            //               child: Image.network(
+            //                 widget.data[index].adsimage,
+            //                 fit: BoxFit.fill,
+            //               ),
+            //             )),
+            //         SizedBox(height: 10),
+            //       ],
+            //     ),
+            //   );
+            // }
           },
         ),
       ),

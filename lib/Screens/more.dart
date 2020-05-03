@@ -27,7 +27,7 @@ class _MoreState extends State<More> {
   ApiService _apiService;
 
   _facebook() async {
-    const url = 'https://www.facebook.com/alroyanewspaper';
+    const url = 'https://www.facebook.com/arcanadanews';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -36,7 +36,7 @@ class _MoreState extends State<More> {
   }
 
   _twitter() async {
-    const url = 'https://twitter.com/AlroyaNewspaper';
+    const url = 'https://twitter.com/arabcanada_news';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -45,7 +45,7 @@ class _MoreState extends State<More> {
   }
 
   _youtube() async {
-    const url = 'https://www.youtube.com/channel/UCqFzK-bk6V73uUOsSVjvNgg';
+    const url = 'https://www.youtube.com/channel/UCKTaA2A_rW8cH7Nj-KzGHLg';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -54,7 +54,7 @@ class _MoreState extends State<More> {
   }
 
   _instagram() async {
-    const url = 'https://www.instagram.com/alroyanewspaper/';
+    const url = 'https://www.instagram.com/arabcanadanews/';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -270,36 +270,36 @@ class _MoreState extends State<More> {
                             size: 20,
                           ),
                           onPressed: () => _instagram()),
-                      IconButton(
-                          icon: Icon(
-                            FontAwesomeIcons.snapchat,
-                            size: 20,
-                          ),
-                          onPressed: () => _snapchat()),
-                      IconButton(
-                          icon: Icon(
-                            FontAwesomeIcons.whatsapp,
-                            size: 20,
-                          ),
-                          onPressed: () => _whatsapp()),
+                      // IconButton(
+                      //     icon: Icon(
+                      //       FontAwesomeIcons.snapchat,
+                      //       size: 20,
+                      //     ),
+                      //     onPressed: () => _snapchat()),
+                      // IconButton(
+                      //     icon: Icon(
+                      //       FontAwesomeIcons.whatsapp,
+                      //       size: 20,
+                      //     ),
+                      //     onPressed: () => _whatsapp()),
                       IconButton(
                           icon: Icon(
                             FontAwesomeIcons.youtube,
                             size: 20,
                           ),
                           onPressed: () => _youtube()),
-                      IconButton(
-                          icon: Icon(
-                            FontAwesomeIcons.soundcloud,
-                            size: 20,
-                          ),
-                          onPressed: () => _soundcloud()),
-                      IconButton(
-                          icon: Icon(
-                            FontAwesomeIcons.podcast,
-                            size: 20,
-                          ),
-                          onPressed: () => _podcastapple()),
+                      // IconButton(
+                      //     icon: Icon(
+                      //       FontAwesomeIcons.soundcloud,
+                      //       size: 20,
+                      //     ),
+                      //     onPressed: () => _soundcloud()),
+                      // IconButton(
+                      //     icon: Icon(
+                      //       FontAwesomeIcons.podcast,
+                      //       size: 20,
+                      //     ),
+                      //     onPressed: () => _podcastapple()),
                     ],
                   ),
                 ),

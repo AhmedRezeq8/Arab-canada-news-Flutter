@@ -136,6 +136,7 @@ class ApiService {
       headers: {"content-type": "application/json"},
       body: userToJson(body),
     );
+    print(response.request);
     if (response.statusCode == 201 || response.statusCode == 200) {
       return true;
     } else {
@@ -148,6 +149,6 @@ class ApiService {
   // return imge url
 
   String getImage(String img) {
-    return 'https://arabcanadanews.ca/image/640/432/' + img;
+    return 'https://arabcanadanews.ca/' + img;
   }
 }

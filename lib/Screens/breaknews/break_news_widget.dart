@@ -31,7 +31,8 @@ class _BreakNewsState extends State<BreakNewsWidget> {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           Map content = snapshot.data;
-          if (content['data'].toString() == '[]') {
+
+          if (content['data']['posts'].toString() == '[]') {
             return Center(
               child: Container(
                 width: 400,
@@ -49,7 +50,7 @@ class _BreakNewsState extends State<BreakNewsWidget> {
             );
           }
           return ListView.builder(
-            itemCount: content['data'].length,
+            itemCount: content['data']['posts'].length,
             scrollDirection: Axis.vertical,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
@@ -76,7 +77,9 @@ class _BreakNewsState extends State<BreakNewsWidget> {
                               SizedBox(
                                 width: 7,
                               ),
-                              Text(content['data'][index]['time'].toString(),
+                              Text(
+                                  content['data']['posts'][index]['time']
+                                      .toString(),
                                   style: TextStyle(
                                       color: Color(0xffeb4e54),
                                       fontWeight: FontWeight.bold,
@@ -89,7 +92,8 @@ class _BreakNewsState extends State<BreakNewsWidget> {
                           Container(
                             width: 400,
                             child: Text(
-                              content['data'][index]['title'].toString(),
+                              content['data']['posts'][index]['title']
+                                  .toString(),
                               style: TextStyle(
                                   fontFamily: "sst-arabic-bold",
                                   fontSize: 14,
