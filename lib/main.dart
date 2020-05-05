@@ -22,6 +22,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return BotToastInit(
       child: MaterialApp(
+        builder: (BuildContext context, Widget child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 0.9),
+            child: child,
+          );
+        },
         navigatorObservers: [BotToastNavigatorObserver()],
         darkTheme: ThemeData(
             pageTransitionsTheme: PageTransitionsTheme(builders: {

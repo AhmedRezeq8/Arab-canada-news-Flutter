@@ -1,8 +1,10 @@
 import 'package:arabcanadanews/Screens/video/videoView.dart';
+import 'package:arabcanadanews/Screens/webViewMagazine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sfsymbols/flutter_sfsymbols.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'Home/Home.dart';
 import 'breaknews/breaknews.dart';
@@ -27,18 +29,26 @@ class _MyTabBarState extends State<MyTabBar> {
     Home(),
     BreakNews(),
     // BreakNews(),
-    CategorieView2(title: 'غرائب وعجائب', catId: 2),
+    // MagazineWebView(),
     // AlrayView(),
     VideoView(),
     // CustomScrollViewTestRoute(),
     More()
   ];
+  // _magazine() async {
+  //   const url = 'https://arabcanadanews.ca/magazine/index.html';
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   @override
   void initState() {
     pageList.add(Home());
     pageList.add(BreakNews());
-    pageList.add(CategorieView2(title: 'غرائب وعجائب', catId: 2));
+    pageList.add(MagazineWebView());
     pageList.add(VideoView());
     pageList.add(More());
     super.initState();
@@ -85,7 +95,7 @@ class _MyTabBarState extends State<MyTabBar> {
                   allowDrawingOutsideViewBox: true,
                 ),
                 title: Text(
-                  "غرائب وعجائب",
+                  "الصحيفة",
                   style: TextStyle(
                       fontFamily: "SST-Arabic-Medium",
                       fontSize: 11,

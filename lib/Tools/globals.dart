@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 // Master Color
 Color dark = Color(0xffFB0304);
-String widget_1_title = 'عرب كندا نيوز';
+String widget_1_title = 'أخبار كندا';
 
 //
 Color light = Colors.purple[800];
