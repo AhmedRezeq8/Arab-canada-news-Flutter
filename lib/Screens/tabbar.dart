@@ -35,20 +35,24 @@ class _MyTabBarState extends State<MyTabBar> {
     // CustomScrollViewTestRoute(),
     More()
   ];
-  // _magazine() async {
-  //   const url = 'https://arabcanadanews.ca/magazine/index.html';
-  //   if (await canLaunch(url)) {
-  //     await launch(url);
-  //   } else {
-  //     throw 'Could not launch $url';
-  //   }
-  // }
+  _magazine() async {
+    const url = 'https://arabcanadanews.ca/magazine/index.html';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   void initState() {
     pageList.add(Home());
     pageList.add(BreakNews());
-    pageList.add(MagazineWebView());
+    pageList.add(Container(
+      child: Center(
+        child: Text('صحيفة عرب كندا نيوز'),
+      ),
+    ));
     pageList.add(VideoView());
     pageList.add(More());
     super.initState();
@@ -124,6 +128,10 @@ class _MyTabBarState extends State<MyTabBar> {
                 backgroundColor: Colors.blue),
           ],
           onTap: (index) {
+            print(index);
+            if (index == 2) {
+              _magazine();
+            }
             setState(() {
               _currentIndex = index;
             });
